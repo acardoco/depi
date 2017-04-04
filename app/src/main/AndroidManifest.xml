@@ -23,8 +23,7 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".actividad" />
-        <activity android:name=".DeleteMePlease"></activity>
+        <activity android:name=".actividad"></activity>
     </application>
 
 </manifest>
