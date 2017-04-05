@@ -1,5 +1,5 @@
 package com.depi.checkdoc.checkdoc;
-
+//propiedad de victorio
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
