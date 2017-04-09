@@ -27,7 +27,9 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".PrivacyPolicyActivity" />
+        <activity android:name=".PrivacyPolicyActivity"
+            android:label="@string/title_activity_privacy_policy"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".History"
             android:label="@string/title_activity_history"
