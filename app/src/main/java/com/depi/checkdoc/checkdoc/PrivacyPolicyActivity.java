@@ -1,10 +1,11 @@
 package com.depi.checkdoc.checkdoc;
-//propiedad de victor
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class PrivacyPolicyActivity extends AppCompatActivity {
 
@@ -12,32 +13,16 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy_policy);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        //Esto pone el título en la barra de arriba cada vez
-        TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
-        txtTitle.setText(getResources().getString(R.string.title_activity_privacy));
-
-
-
-    }
-    //con esto se vuelve a atrás
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent =
-                        new Intent(PrivacyPolicyActivity.this, MenuActivity.class);
-
-                //Iniciamos la nueva actividad
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 }
