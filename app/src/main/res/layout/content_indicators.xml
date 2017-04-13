@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.depi.checkdoc.checkdoc.Indicators"
+    tools:showIn="@layout/activity_indicators">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        >
+
+    <include layout="@layout/fotoperfilynombre"/>
+
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground"/>
+        <TableRow>
+
+
+            <ImageView
+            android:id="@+id/legendImg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/imgMe"
+            android:src="@drawable/valornormal"
+            />
+
+        <TextView android:id="@+id/legendText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:text="@string/legend_normal_state"
+            android:textStyle="normal"
+            android:paddingLeft="4dp"
+            android:paddingRight="1dp"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/legendImg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/imgMe"
+
+            android:src="@drawable/valormedio"
+            />
+
+        <TextView android:id="@+id/legendText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:text="@string/legend_low_state"
+            android:textStyle="normal"
+            android:paddingLeft="4dp"
+            android:paddingRight="1dp"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/legendImg3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/imgMe"
+
+            android:src="@drawable/valorcritico"
+            />
+
+        <TextView android:id="@+id/legendText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:text="@string/legend_critical_state"
+            android:textStyle="normal"
+            android:paddingLeft="4dp"
+            android:paddingRight="1dp"
+            android:textSize="15sp" />
+        </TableRow>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBackground"/>
+    </TableLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        >
+
+        <ListView android:id="@+id/LstIndicators"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp" />
+    </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

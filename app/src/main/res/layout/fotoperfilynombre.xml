@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        android:orientation="horizontal">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/nameProfileAndPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/userName"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:id="@+id/descriptionProfileAndPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/infoVictor"
+                android:textAlignment="center"
+                android:paddingLeft="150dp"
+                android:paddingTop="10dp"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/ImgFotoPerfilHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/imgMe"
+            android:src="@drawable/imgme" />
+    </LinearLayout>

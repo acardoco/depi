@@ -10,24 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class PrivacyPolicyActivity extends AppCompatActivity {
+public class ContactMant extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy_policy);
+        setContentView(R.layout.activity_contact_mant);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //Esto pone el título en la barra de arriba cada vez
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
-        txtTitle.setText(getResources().getString(R.string.title_activity_privacy));
-
-
-        //la de ajustes de notificaciones ya está hecha, se llama NotificationsEnabling, solo tienes que llamarla desde aquí
-
+        txtTitle.setText(getResources().getString(R.string.title_activity_contact_mant));
     }
     //con esto se vuelve a atrás
     @Override
@@ -35,7 +33,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent =
-                        new Intent(PrivacyPolicyActivity.this, MenuActivity.class);
+                        new Intent(ContactMant.this, MenuActivity.class);
 
                 //Iniciamos la nueva actividad
                 startActivity(intent);
@@ -44,4 +42,5 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
