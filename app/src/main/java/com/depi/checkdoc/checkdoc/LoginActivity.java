@@ -73,11 +73,11 @@ public class LoginActivity extends Activity {
             }
         });
 
-        //cancelar login, matamos app
+        //cancelar login, matamos app con System.exit
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                System.exit(0);
             }
         });
 

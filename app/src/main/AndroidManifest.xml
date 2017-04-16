@@ -17,8 +17,7 @@
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".PrivacyPolicyActivity"
             android:label="@string/title_activity_privacy_policy"
@@ -42,7 +41,7 @@
         <activity
             android:name=".Indicators"
             android:label="@string/title_activity_indicators"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CalendarActivity"
             android:label="@string/title_activity_calendar"
@@ -63,7 +62,8 @@
             android:name=".Settings"
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,6 +71,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChangePasswordActivity"></activity>
     </application>
 
 </manifest>
