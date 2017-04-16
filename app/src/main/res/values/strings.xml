@@ -182,4 +182,19 @@ El ejercicio de los derechos de oposición, acceso, rectificación y cancelació
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="contact_doctor">
+        "Datos de contacto de tu doctor:\n\n"
+
+        "  Nombre: Carlos\n"
+        "  Correo electrónico: Clavero\n"
+        "  Teléfono de contacto: 678678890\n"
+        "  Dirección: C/Madrid 7, 34\n"
+        "  28097, Getafe\n"
+    </string>
+    <string name="opened">
+        "Abierto todos los días de 8A.M. a 7P.M."
+    </string>
+    <string name="imgMapDocDescrp">
+        Mapa del contacto con el doctor.
+    </string>
 </resources>
