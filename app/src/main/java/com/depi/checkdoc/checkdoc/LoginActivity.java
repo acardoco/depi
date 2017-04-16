@@ -55,16 +55,16 @@ public class LoginActivity extends Activity {
                 if(validate(ed1) &&
                         validate(ed2) ) {
                     Toast.makeText(getApplicationContext(),
-                            "Redirecting...",Toast.LENGTH_SHORT).show();
+                            getResources().getString(R.string.redirecting),Toast.LENGTH_SHORT).show();
                     Intent intent =
                             new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.wrong_credentials),Toast.LENGTH_SHORT).show();
                     tx1.setVisibility(View.VISIBLE);
                     //tx1.setBackgroundColor(Color.RED);
                     counter--;
-                    tx1.setText("Trys: "+Integer.toString(counter));
+                    tx1.setText(getResources().getString(R.string.tries)+Integer.toString(counter));
 
                     if (counter == 0) {
                         b1.setEnabled(false);
@@ -101,7 +101,7 @@ public class LoginActivity extends Activity {
     //guardar en BD con SQLite o en un fichero plano.
     public void onCheckboxClicked(View view) {
         if (rm.isChecked()){
-            //guardar credenciales en algun lugar de la Mancha...
+            //guardar credenciales en algun lugar
         }else{
             //no hacer nada
         }

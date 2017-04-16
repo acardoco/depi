@@ -2,12 +2,14 @@ package com.depi.checkdoc.checkdoc;
 
 import android.app.Activity;
 import android.app.usage.UsageEvents;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.EventLog;
@@ -25,14 +27,38 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //este es el boton de emergencia de la barra
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(CalendarActivity.this);
+                builder1.setMessage(getResources().getString(R.string.doctorWarn));
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        getResources().getString(R.string.accept),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
             }
         });
+
+        //este es el boton de abajo
+        FloatingActionButton fab2= (FloatingActionButton) findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Esto pone el título en la barra de arriba cada vez
