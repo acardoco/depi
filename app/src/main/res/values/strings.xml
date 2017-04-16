@@ -204,6 +204,9 @@ El ejercicio de los derechos de oposición, acceso, rectificación y cancelació
     <string name="opened">
         "Abierto todos los días de 8A.M. a 9P.M."
     </string>
+    <string name="imgMapDocDescrp">
+        Imagen del mapa de contacto con el doctor.
+    </string>
 
 
 </resources>
