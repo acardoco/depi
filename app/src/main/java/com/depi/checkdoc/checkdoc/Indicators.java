@@ -1,12 +1,21 @@
 package com.depi.checkdoc.checkdoc;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +23,10 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Indicators extends AppCompatActivity {
     Bundle bundle;
@@ -26,6 +39,11 @@ public class Indicators extends AppCompatActivity {
 
                     new IndicatorItem("Niveles de azúcar", 2),
                     new IndicatorItem("Ácido úrico", 1)};
+
+    private Intent notIntent;
+    private NotificationCompat.Builder mBuilder;
+    private TaskStackBuilder stackBuilder;
+    private NotificationManager mNotificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +134,44 @@ public class Indicators extends AppCompatActivity {
         //Esto pone el título en la barra de arriba cada vez
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_indicators));
+
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.checkdocsmall)
+                .setContentTitle("Alerta por nivel de azúcar")
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.sugarnot))
+                .setSound(alarmSound)
+                .setVibrate(new long[] {0, 1000, 200,1000 })
+                .setLights(Color.MAGENTA, 500, 500)
+                .setContentText("Los niveles de glucosa en sangre de " + name.getText() + " están por...");
+
+        notIntent = new Intent(this, GraphicsIndicator.class);
+        Bundle b = new Bundle();
+        b.putInt("user", bundle.getInt("user"));
+        b.putString("indicator", data[3].getIndicator());
+        b.putInt("state", data[3].getState());
+        notIntent.putExtras(b);
+
+        stackBuilder = TaskStackBuilder.create(this);
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        scheduler.scheduleAtFixedRate
+                (new Runnable() {
+                    public void run() {
+
+                        stackBuilder.addParentStack(GraphicsIndicator.class);
+                        stackBuilder.addNextIntent(notIntent);
+
+                        PendingIntent resultPendingIntent =
+                                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT
+                                );
+                        mBuilder.setContentIntent(resultPendingIntent);
+
+                        mNotificationManager.notify(1234, mBuilder.build());
+
+                    }
+                }, 0, 10, TimeUnit.MINUTES);
 
 
     }
