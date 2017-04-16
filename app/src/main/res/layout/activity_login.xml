@@ -17,7 +17,7 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:id = "@+id/editText"
-        android:hint = "Enter Name"
+        android:hint = "@string/intUserName"
         android:focusable = "true"
         android:textColorHighlight = "#ff7eff15"
         android:textColorHint = "#ffff25e6"
@@ -48,14 +48,14 @@
         android:layout_alignRight="@+id/editText"
         android:layout_alignEnd="@+id/editText"
         android:textColorHint="#ffff299f"
-        android:hint="Password" />
+        android:hint="@string/password" />
 
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot your password?"
+        android:text="@string/forgot"
         android:id="@+id/password"
         android:textSize="15dp"
         android:layout_marginTop="19dp"
@@ -68,7 +68,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="login"
+        android:text="@string/login"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/textview"
@@ -77,7 +77,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textview"
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:text="Remember me"
+        android:text="@string/rememberMe"
         android:layout_below="@+id/editText2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
