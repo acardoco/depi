@@ -14,7 +14,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_menu">Inicio</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -182,19 +182,18 @@ El ejercicio de los derechos de oposición, acceso, rectificación y cancelació
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="contact_doctor">
-        "Datos de contacto de tu doctor:\n\n"
+    <string name="tries">Intentos:</string>
+    <string name="wrong_credentials">Credenciales erróneos.</string>
+    <string name="redirecting">Cargando...</string>
+    <string name="rememberMe">Recordar mis datos</string>
+    <string name="login">Acceder</string>
+    <string name="cancel">Cancelar</string>
+    <string name="forgot">¿Olvidó su contraseña?</string>
+    <string name="intUserName">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="doctorWarn">Su médico ya ha sido avisado. Se pondrá en contacto con usted en los próximos segundos.</string>
+    <string name="accept">Aceptar</string>
 
-        "  Nombre: Carlos\n"
-        "  Correo electrónico: Clavero\n"
-        "  Teléfono de contacto: 678678890\n"
-        "  Dirección: C/Madrid 7, 34\n"
-        "  28097, Getafe\n"
-    </string>
-    <string name="opened">
-        "Abierto todos los días de 8A.M. a 7P.M."
-    </string>
-    <string name="imgMapDocDescrp">
-        Mapa del contacto con el doctor.
-    </string>
+
+
 </resources>
