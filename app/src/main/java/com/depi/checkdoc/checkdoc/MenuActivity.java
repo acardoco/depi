@@ -101,7 +101,6 @@ public class MenuActivity extends AppCompatActivity
                      new Intent(MenuActivity.this, ContactMant.class);
 
              startActivity(intent);
-
          } else if (id == R.id.calendar) {
              Intent intent =
                      new Intent(MenuActivity.this, CalendarActivity.class);

@@ -46,12 +46,13 @@ public class ContactMant extends AppCompatActivity {
         });
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Esto pone el título en la barra de arriba cada vez
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_contact_mant));
+
     }
     //con esto se vuelve a atrás
     @Override
@@ -68,5 +69,4 @@ public class ContactMant extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

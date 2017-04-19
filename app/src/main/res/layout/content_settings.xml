@@ -8,4 +8,11 @@
     tools:context="com.depi.checkdoc.checkdoc.Settings"
     tools:showIn="@layout/activity_settings">
 
+    <ListView
+        android:id="@+id/settingsList"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>

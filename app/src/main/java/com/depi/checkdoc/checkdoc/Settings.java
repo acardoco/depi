@@ -1,5 +1,6 @@
 package com.depi.checkdoc.checkdoc;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +11,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class Settings extends AppCompatActivity {
+
+
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +65,93 @@ public class Settings extends AppCompatActivity {
         txtTitle.setText(getResources().getString(R.string.title_activity_settings));
 
 
-        //la de ajustes de notificaciones ya está hecha, se llama NotificationsEnabling, solo tienes que llamarla desde aquí
+        // Get ListView object from xml
+        listView = (ListView) findViewById(R.id.settingsList);
 
+        // Defined Array values to show in ListView
+        String[] values = new String[] {
+                "Notificaciones",
+                "Cambiar Contraseña",
+                "Corrección de color",
+                "Idioma",
+                "Activar Reconocimiento de voz",
+                "Activar Audiodescripción",
+                "Activar Reconocimiento de Gestos",
+        };
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+
+        // Assign adapter to ListView
+        listView.setAdapter(adapter);
+
+        // ListView Item Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+                // ListView Clicked item value
+                String  itemValue    = (String) listView.getItemAtPosition(position);
+                Intent intent;
+                switch (position){
+                    case 0:
+                        intent= new Intent(Settings.this, NotificationsEnabling.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent = new Intent(Settings.this, ChangePasswordActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        // Show Alert
+                        Toast.makeText(getApplicationContext(),
+                                "Corrección de color realizada" , Toast.LENGTH_LONG)
+                                .show();
+                        break;
+                    case 3:
+                        final CharSequence languages[] = new CharSequence[] {"Español", "Inglés", "Alemán", "Francés"};
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+                        builder.setTitle("Selecciona tu idioma");
+                        builder.setItems(languages, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                CharSequence langSelected = languages[which];
+                                Toast.makeText(getApplicationContext(),
+                                        "Idioma seleccionado: "+langSelected , Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        });
+                        builder.show();
+                        break;
+                    default:
+                        // Show Alert
+                        Toast.makeText(getApplicationContext(),
+                                "Activado" , Toast.LENGTH_LONG)
+                                .show();
+                        break;
+
+                }
+
+
+
+
+            }
+
+        });
+
+        //la de ajustes de notificaciones ya está hecha, se llama NotificationsEnabling, solo tienes que llamarla desde aquí
     }
     //con esto se vuelve a atrás
     @Override
