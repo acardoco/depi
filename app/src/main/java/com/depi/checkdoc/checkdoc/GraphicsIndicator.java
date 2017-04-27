@@ -110,7 +110,7 @@ public class GraphicsIndicator extends AppCompatActivity {
         series.setTitle(getResources().getString(R.string.graphic_legend_1));
         series2.setTitle(getResources().getString(R.string.graphic_legend_2));
         graph.getLegendRenderer().setVisible(true);
-        graph.getLegendRenderer().setBackgroundColor(Color.WHITE);
+        graph.getLegendRenderer().setBackgroundColor(Color.rgb(167,149,149));
         graph.getLegendRenderer().setFixedPosition(0,0);
         graph.getGridLabelRenderer().setNumVerticalLabels(20);
         graph.getGridLabelRenderer().setNumHorizontalLabels(8);

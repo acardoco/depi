@@ -75,7 +75,41 @@
                 android:textSize="15sp" />
 
         </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/text_margin"
+                android:background="@color/colorTextDark"/>
+            <TextView android:id="@+id/currentValue"
+                android:layout_marginTop="@dimen/text_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/currentValue"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorTextDark"/>
+            <TextView android:id="@+id/healthyRange"
+                android:layout_marginTop="@dimen/text_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/healthyRange"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorTextDark"/>
+            <TextView android:id="@+id/recom"
+                android:layout_marginTop="@dimen/text_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/recom"/>
+
         </LinearLayout>
+
     </ScrollView>
 
     <android.support.constraint.Guideline

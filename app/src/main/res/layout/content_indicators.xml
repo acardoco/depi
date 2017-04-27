@@ -27,7 +27,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/colorBackground"/>
+            android:layout_marginBottom="@dimen/text_margin"
+            android:background="@color/colorTextDark"/>
         <TableRow>
 
 
@@ -99,7 +100,8 @@
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/colorBackground"/>
+            android:layout_marginTop="@dimen/text_margin"
+            android:background="@color/colorTextDark"/>
     </TableLayout>
 
 

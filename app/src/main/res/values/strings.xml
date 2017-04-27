@@ -223,6 +223,17 @@ El ejercicio de los derechos de oposición, acceso, rectificación y cancelació
     <string name="calendarEvent2">
         13:00   Ejercicios de rehabilitación
     </string>
-
-
+    <string name="currentValue">
+        "  <b>Valor actual</b>:  120/80 mm/Hg\n"
+    </string>
+    <string name="healthyRange">
+        "  <b>Rango saludable</b>: 120-139/80 mm/Hg\n"
+    </string>
+    <string name="recom">
+        "  <b>Recomendaciones</b>:\n\n"
+        "      - Mantenerse relajado\n"
+        "      - Evitar comida con sal\n"
+        "      - Tomar tus medicinas\n"
+        "       <a href="https://mejorconsalud.com/5-maneras-naturales-para-bajar-la-presion-arterial/">Más información</a>\n\n"
+    </string>
 </resources>
