@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class GraphicsIndicator extends AppCompatActivity {
     Bundle bundle;
+    int show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,14 +132,55 @@ public class GraphicsIndicator extends AppCompatActivity {
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_graphics_indicator));
 
+        //alert dialog
+        View checkBoxView = View.inflate(this, R.layout.alert_view, null);
+        CheckBox checkBox = (CheckBox) checkBoxView.findViewById(R.id.checkbox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked)
+                   show = 1;
+                else
+                   show = 0;
+
+
+            }
+        });
+
+
+        if(bundle.getInt("show") == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Recuerde");
+            builder.setMessage("Puede consultar más abajo en esta pantalla las recomendaciones para este valor del indicador .")
+                    .setView(checkBoxView)
+                    .setCancelable(false)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    }).show();
+
+        }
+        else
+            show = 1;
+
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent =
-                        new Intent(GraphicsIndicator.this, Indicators.class);
+                Intent intent;
+                if(bundle.getInt("previous") == 0)
+                       intent = new Intent(GraphicsIndicator.this, History.class);
+                else
+                    intent = new Intent(GraphicsIndicator.this, Indicators.class);
+
                 Bundle b = new Bundle();
                 b.putInt("user",bundle.getInt("user"));
+                b.putInt("show",show);
+                b.putInt("show2", bundle.getInt("show2"));
+
                 intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);

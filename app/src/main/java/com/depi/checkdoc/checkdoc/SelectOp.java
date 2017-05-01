@@ -1,6 +1,5 @@
 package com.depi.checkdoc.checkdoc;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,32 +8,25 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-
-public class Settings extends AppCompatActivity {
+public class SelectOp extends AppCompatActivity {
 
     Bundle bundle;
     ListView listView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_select_op);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        bundle = this.getIntent().getExtras();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +35,7 @@ public class Settings extends AppCompatActivity {
                 //          Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //                  .setAction("Action", null).show();
 
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(Settings.this);
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(SelectOp.this);
                 builder1.setMessage(getResources().getString(R.string.doctorWarn));
                 builder1.setCancelable(true);
 
@@ -61,25 +53,36 @@ public class Settings extends AppCompatActivity {
         });
 
 
+        TextView name = (TextView) findViewById(R.id.nameProfileAndPhoto);
+        TextView description = (TextView) findViewById(R.id.descriptionProfileAndPhoto);
+        ImageView img = (ImageView) findViewById(R.id.ImgFotoPerfilHistory);
+
+        bundle = this.getIntent().getExtras();
+        switch (bundle.getInt("user")){
+            //el cero es el que está por defecto
+            case 1:name.setText(getResources().getString(R.string.mariaName));
+                description.setText(getResources().getString(R.string.mariaDesc));
+                img.setImageResource(R.drawable.imgmaria);break;
+            case 2:name.setText(getResources().getString(R.string.alfredoName));
+                description.setText(getResources().getString(R.string.alfredoDesc));
+                img.setImageResource(R.drawable.imgalfredo);break;
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Esto pone el título en la barra de arriba cada vez
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
-        txtTitle.setText(getResources().getString(R.string.title_activity_settings));
+        txtTitle.setText(getResources().getString(R.string.title_activity_select_options));
 
 
         // Get ListView object from xml
-        listView = (ListView) findViewById(R.id.settingsList);
+       listView = (ListView) findViewById(R.id.optionsList);
 
         // Defined Array values to show in ListView
         String[] values = new String[] {
-                "Notificaciones",
-                "Cambiar Contraseña",
-                "Corrección de color",
-                "Idioma",
-                "Activar Reconocimiento de voz",
-                "Activar Audiodescripción",
-                "Activar Reconocimiento de Gestos",
+                "Indicadores",
+                "Calendario",
+                "Historial"
         };
 
         // Define a new Adapter
@@ -107,56 +110,30 @@ public class Settings extends AppCompatActivity {
                 // ListView Clicked item value
                 String  itemValue    = (String) listView.getItemAtPosition(position);
                 Intent intent;
-                Bundle b;
+                Bundle b = new Bundle();
+
+                b.putInt("user",bundle.getInt("user"));
+                b.putInt("show",bundle.getInt("show"));
+                b.putInt("show2", bundle.getInt("show2"));
+
                 switch (position){
                     case 0:
-                        intent= new Intent(Settings.this, NotificationsEnabling.class);
-                        b = new Bundle();
-                        if(bundle != null) {
-                            b.putInt("show", bundle.getInt("show"));
-                            b.putInt("show2", bundle.getInt("show2"));
-                        }
+                        intent= new Intent(SelectOp.this, Indicators.class);
+
                         intent.putExtras(b);
                         startActivity(intent);
                         break;
                     case 1:
-                        intent = new Intent(Settings.this, ChangePass.class);
-                        b = new Bundle();
-                        if(bundle != null) {
-                            b.putInt("show", bundle.getInt("show"));
-                            b.putInt("show2", bundle.getInt("show2"));
-                        }
+                        intent = new Intent(SelectOp.this, CalendarActivity.class);
                         intent.putExtras(b);
                         startActivity(intent);
                         break;
                     case 2:
-                        // Show Alert
-                        Toast.makeText(getApplicationContext(),
-                                "Corrección de color realizada" , Toast.LENGTH_LONG)
-                                .show();
+                        intent = new Intent(SelectOp.this, History.class);
+                        intent.putExtras(b);
+                        startActivity(intent);
                         break;
-                    case 3:
-                        final CharSequence languages[] = new CharSequence[] {"Español", "Inglés", "Alemán", "Francés"};
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
-                        builder.setTitle("Selecciona tu idioma");
-                        builder.setItems(languages, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                CharSequence langSelected = languages[which];
-                                Toast.makeText(getApplicationContext(),
-                                        "Idioma seleccionado: "+langSelected , Toast.LENGTH_LONG)
-                                        .show();
-                            }
-                        });
-                        builder.show();
-                        break;
-                    default:
-                        // Show Alert
-                        Toast.makeText(getApplicationContext(),
-                                "Activado" , Toast.LENGTH_LONG)
-                                .show();
-                        break;
 
                 }
 
@@ -167,21 +144,20 @@ public class Settings extends AppCompatActivity {
 
         });
 
-        //la de ajustes de notificaciones ya está hecha, se llama NotificationsEnabling, solo tienes que llamarla desde aquí
+
     }
     //con esto se vuelve a atrás
-    @Override
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent =
-                        new Intent(Settings.this, MenuActivity.class);
+                        new Intent(SelectOp.this, MenuActivity.class);
 
                 Bundle b = new Bundle();
-                if(bundle != null){
-                    b.putInt("show", bundle.getInt("show"));
-                    b.putInt("show2", bundle.getInt("show2"));
-                }
+                b.putInt("show",bundle.getInt("show"));
+                b.putInt("show2", bundle.getInt("show2"));
+
                 intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);

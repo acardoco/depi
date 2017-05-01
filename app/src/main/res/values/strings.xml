@@ -24,7 +24,7 @@
     <string name="imgMe">Yo</string>
     <string name="imgMaria">María</string>
     <string name="imgAlfredo">Alfredo</string>
-    <string name="selectUser">Seleccione la persona a la que desea monitorizar:</string>
+    <string name="selectUser">Pulse en la imagen de la persona a la que desea monitorizar:</string>
     <string name="selectUserNotif">Seleccione la persona de la que desea recibir notificaciones:</string>
     <string name="tituloSeleccionarUsuario"> Inicio </string>
     <string name="userName"> Victor Manuel Zamora España</string>
@@ -44,7 +44,7 @@
     <string name="graphic_legend_1">Sus valores</string>
     <string name="graphic_legend_2">Valores normales</string>
     <string name="axis_x_title">Días previos</string>
-    <string name="axis_y_title">Valores</string>
+    <string name="axis_y_title">Valores (mm)</string>
     <string name="title_activity_graphics_indicator">Valores del indicador</string>
     <string name="title_activity_notifications_enabling">Ajustes de notificaciones</string>
     <string name="title_activity_indicators">Indicadores</string>
@@ -236,4 +236,7 @@ El ejercicio de los derechos de oposición, acceso, rectificación y cancelació
         "      - Tomar tus medicinas\n"
         "       <a href="https://mejorconsalud.com/5-maneras-naturales-para-bajar-la-presion-arterial/">Más información</a>\n\n"
     </string>
+    <string name="title_activity_select_options"> Seleccione una opción </string>
+    <string name="title_activity_select_op">SelectOp</string>
+    <string name="title_activity_change_pass">Cambio de contraseña</string>
 </resources>

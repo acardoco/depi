@@ -19,7 +19,7 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 public class CalendarActivity extends AppCompatActivity {
-
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +27,7 @@ public class CalendarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        bundle = this.getIntent().getExtras();
         //este es el boton de emergencia de la barra
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -140,8 +141,13 @@ public class CalendarActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent =
-                        new Intent(CalendarActivity.this, MenuActivity.class);
+                        new Intent(CalendarActivity.this, SelectOp.class);
 
+                Bundle b = new Bundle();
+                b.putInt("user",bundle.getInt("user"));
+                b.putInt("show",bundle.getInt("show"));
+                b.putInt("show2", bundle.getInt("show2"));
+                intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
                 return true;
@@ -149,4 +155,6 @@ public class CalendarActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

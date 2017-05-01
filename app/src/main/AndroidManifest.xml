@@ -17,7 +17,7 @@
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PrivacyPolicyActivity"
             android:label="@string/title_activity_privacy_policy"
@@ -71,7 +71,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity
+            android:name=".SelectOp"
+            android:label="@string/title_activity_select_op"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ChangePass"
+            android:label="@string/title_activity_change_pass"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

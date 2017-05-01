@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class PrivacyPolicyActivity extends AppCompatActivity {
 
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        bundle = this.getIntent().getExtras();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +66,12 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
                 Intent intent =
                         new Intent(PrivacyPolicyActivity.this, MenuActivity.class);
 
+                Bundle b = new Bundle();
+                if(bundle != null){
+                    b.putInt("show", bundle.getInt("show"));
+                    b.putInt("show2", bundle.getInt("show2"));
+                }
+                intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
                 return true;

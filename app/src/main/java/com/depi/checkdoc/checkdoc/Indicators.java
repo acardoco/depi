@@ -80,7 +80,7 @@ public class Indicators extends AppCompatActivity {
 
 
 
-       TextView name = (TextView) findViewById(R.id.nameProfileAndPhoto);
+        TextView name = (TextView) findViewById(R.id.nameProfileAndPhoto);
         TextView description = (TextView) findViewById(R.id.descriptionProfileAndPhoto);
         ImageView img = (ImageView) findViewById(R.id.ImgFotoPerfilHistory);
 
@@ -115,11 +115,14 @@ public class Indicators extends AppCompatActivity {
                 Intent intent =
                         new Intent(Indicators.this, GraphicsIndicator.class);
 
-               Bundle b = new Bundle();
+                Bundle b = new Bundle();
 
                 b.putInt("user",bundle.getInt("user"));
                 b.putString("indicator",((IndicatorItem)a.getItemAtPosition(position)).getIndicator());
                 b.putInt("state",((IndicatorItem)a.getItemAtPosition(position)).getState());
+                b.putInt("previous",1);
+                b.putInt("show",bundle.getInt("show"));
+                b.putInt("show2", bundle.getInt("show2"));
                 intent.putExtras(b);
 
                 //Iniciamos la nueva actividad
@@ -151,6 +154,9 @@ public class Indicators extends AppCompatActivity {
         b.putInt("user", bundle.getInt("user"));
         b.putString("indicator", data[3].getIndicator());
         b.putInt("state", data[3].getState());
+        b.putInt("previous",1);
+        b.putInt("show",bundle.getInt("show"));
+        b.putInt("show2", bundle.getInt("show2"));
         notIntent.putExtras(b);
 
         stackBuilder = TaskStackBuilder.create(this);
@@ -181,8 +187,14 @@ public class Indicators extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent =
-                        new Intent(Indicators.this, MenuActivity.class);
+                        new Intent(Indicators.this, SelectOp.class);
 
+                Bundle b = new Bundle();
+                b.putInt("user",bundle.getInt("user"));
+                b.putInt("show",bundle.getInt("show"));
+                b.putInt("show2", bundle.getInt("show2"));
+
+                intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
                 return true;

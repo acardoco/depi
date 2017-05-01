@@ -10,26 +10,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class History extends AppCompatActivity {
-
+    Bundle bundle;
     ListView history;
     private HistoryItem[] data =
             new HistoryItem[]{
-                    new HistoryItem("Victor", "Presión sanguínea en estado crítico", "10/12/2016","15:32"),
-                    new HistoryItem("María", "Presión sanguínea en estado crítico", "13/01/2015","11:54"),
-                    new HistoryItem("Alfredo", "Ácido úrico en estado crítico", "15/11/2016","12:56"),
+                    new HistoryItem("Presión sanguínea", "Estado:crítico", "10/12/2016","15:32"),
+                    new HistoryItem("Presión sanguínea", "Estado:crítico", "13/01/2015","11:54"),
+                    new HistoryItem("Ácido úrico", "Estado:valores bajos", "15/11/2016","12:56"),
 
-                    new HistoryItem("Alfredo", "Niveles de azúcar en estado crítico", "07/09/2016","19:26"),
-                    new HistoryItem("Victor", "Presión sanguínea en estado crítico", "10/12/2016","15:32"),
-                    new HistoryItem("María", "Presión sanguínea en estado crítico", "13/01/2015","11:54"),
-                    new HistoryItem("Alfredo","Presión sanguínea en estado crítico", "15/11/2016","12:56"),
-                    new HistoryItem("Alfredo", "Niveles de azúcar en estado crítico", "07/09/2016","19:26"),
+                    new HistoryItem("Niveles de azúcar", "Estado:crítico", "07/09/2016","19:26"),
+                    new HistoryItem("Niveles de azúcar", "Estado:crítico", "10/12/2016","15:32"),
+                    new HistoryItem("Presión sanguínea", "Estado:crítico", "13/01/2015","11:54"),
+                    new HistoryItem("Presión sanguínea","Estado:valores bajos", "15/11/2016","12:56"),
+                    new HistoryItem("Niveles de azúcar", "Estado:crítico", "07/09/2016","19:26"),
                     //...
-                    new HistoryItem("Victor", "Presión sanguínea en estado crítico", "10/08/2016","13:42"),
-                    new HistoryItem("María", "Ácido úrico en estado crítico", "24/03/2016","18:30")};
+                    new HistoryItem("Presión sanguínea", "Estado:crítico", "10/08/2016","13:42"),
+                    new HistoryItem("Ácido úrico", "Estado: valores bajos", "24/03/2016","18:30")};
 
 
     @Override
@@ -65,6 +67,20 @@ public class History extends AppCompatActivity {
 
 
 //...
+        TextView name = (TextView) findViewById(R.id.nameProfileAndPhoto);
+        TextView description = (TextView) findViewById(R.id.descriptionProfileAndPhoto);
+        ImageView img = (ImageView) findViewById(R.id.ImgFotoPerfilHistory);
+
+        bundle = this.getIntent().getExtras();
+        switch (bundle.getInt("user")){
+            //el cero es el que está por defecto
+            case 1:name.setText(getResources().getString(R.string.mariaName));
+                description.setText(getResources().getString(R.string.mariaDesc));
+                img.setImageResource(R.drawable.imgmaria);break;
+            case 2:name.setText(getResources().getString(R.string.alfredoName));
+                description.setText(getResources().getString(R.string.alfredoDesc));
+                img.setImageResource(R.drawable.imgalfredo);break;
+        }
 
         adapterListHistory adapter =
                 new adapterListHistory(this, data);
@@ -81,6 +97,30 @@ public class History extends AppCompatActivity {
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_history));
 
+        history.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+
+                Intent intent =
+                        new Intent(History.this, GraphicsIndicator.class);
+
+                Bundle b = new Bundle();
+
+                b.putInt("user",bundle.getInt("user"));
+                b.putString("indicator",((HistoryItem)a.getItemAtPosition(position)).getName());
+                switch (((HistoryItem)a.getItemAtPosition(position)).getItem()){
+                    case "Estado:valores bajos":b.putInt("state",1);break;
+                    case "Estado:crítico":b.putInt("state",2);break;
+                }
+                b.putInt("previous",0);
+                b.putInt("show",bundle.getInt("show"));
+                intent.putExtras(b);
+
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+                //Alternativa 1:
+
+            }
+        });
     }
     //con esto se vuelve a atras
     @Override
@@ -88,8 +128,15 @@ public class History extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent =
-                        new Intent(History.this, MenuActivity.class);
+                        new Intent(History.this, SelectOp.class);
+                Bundle b = new Bundle();
+                b.putInt("user",bundle.getInt("user"));
+                b.putInt("show",bundle.getInt("show"));
 
+
+                b.putInt("show2", bundle.getInt("show2"));
+
+                intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
                 return true;

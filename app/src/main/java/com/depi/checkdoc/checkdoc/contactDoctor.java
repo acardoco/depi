@@ -7,18 +7,27 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 public class contactDoctor extends AppCompatActivity {
-
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_doctor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        bundle = this.getIntent().getExtras();
+        String a = "aaa";
+        if(bundle != null)
+            a = "bbb";
+        Log.d("eeeeeeeeeeee", a);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +60,12 @@ public class contactDoctor extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent =
                         new Intent(contactDoctor.this, Chat.class);
+                Bundle b = new Bundle();
+                if(bundle != null) {
+                    b.putInt("show", bundle.getInt("show"));
+                    b.putInt("show2", bundle.getInt("show2"));
+                }
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });
@@ -71,7 +86,14 @@ public class contactDoctor extends AppCompatActivity {
             case android.R.id.home:
                 Intent intent =
                         new Intent(contactDoctor.this, MenuActivity.class);
+                Bundle b = new Bundle();
 
+                if(bundle != null) {
+                    b.putInt("show", bundle.getInt("show"));
+                    b.putInt("show2", bundle.getInt("show2"));
+                }
+
+                intent.putExtras(b);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
                 return true;

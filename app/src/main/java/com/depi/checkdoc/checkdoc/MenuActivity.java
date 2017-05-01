@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,13 +18,17 @@ import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-//dshjgbfasjlbgng
+    Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+       // if(this.getIntent().getExtras() != null)
+        bundle = this.getIntent().getExtras();
+        //Log.d("int",this.getIntent().getExtras().toString());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,37 +85,53 @@ public class MenuActivity extends AppCompatActivity
 
          int id = item.getItemId();
 
-         if (id == R.id.historial) {
-             Intent intent =
-                     new Intent(MenuActivity.this, History.class);
-
-             startActivity(intent);
-
-         } else if (id == R.id.settings) {
+         if (id == R.id.settings) {
              Intent intent =
                      new Intent(MenuActivity.this, Settings.class);
 
+             Bundle b = new Bundle();
+             if(bundle != null){
+                 b.putInt("show", bundle.getInt("show"));
+                 b.putInt("show2", bundle.getInt("show2"));
+             }
+
+             intent.putExtras(b);
              startActivity(intent);
-         } else if (id == R.id.contactDoctor) {
+         }
+         else if (id == R.id.contactDoctor) {
              Intent intent =
                      new Intent(MenuActivity.this, contactDoctor.class);
 
+             Bundle b = new Bundle();
+             if(bundle != null){
+                 b.putInt("show", bundle.getInt("show"));
+                 b.putInt("show2", bundle.getInt("show2"));
+             }
+             intent.putExtras(b);
              startActivity(intent);
          } else if (id == R.id.contactMant) {
              Intent intent =
                      new Intent(MenuActivity.this, ContactMant.class);
 
-             startActivity(intent);
-         } else if (id == R.id.calendar) {
-             Intent intent =
-                     new Intent(MenuActivity.this, CalendarActivity.class);
+             Bundle b = new Bundle();
+             if(bundle != null){
+                 b.putInt("show", bundle.getInt("show"));
+                 b.putInt("show2", bundle.getInt("show2"));
+             }
 
+             intent.putExtras(b);
              startActivity(intent);
-
          } else if (id == R.id.privacyPol) {
              Intent intent =
                      new Intent(MenuActivity.this, PrivacyPolicyActivity.class);
 
+             Bundle b = new Bundle();
+             if(bundle != null){
+                 b.putInt("show", bundle.getInt("show"));
+                 b.putInt("show2", bundle.getInt("show2"));
+             }
+
+             intent.putExtras(b);
              startActivity(intent);
 
          }
@@ -129,7 +150,7 @@ public class MenuActivity extends AppCompatActivity
     public void imageClick(View view) {
         //Implement image click function
         Intent intent =
-                new Intent(MenuActivity.this, Indicators.class);
+                new Intent(MenuActivity.this, SelectOp.class);
 
         Bundle b = new Bundle();
         switch (view.getId()) {
@@ -137,7 +158,10 @@ public class MenuActivity extends AppCompatActivity
             case R.id.ImgFotoMaria: b.putInt("user",1);break;
             case R.id.ImgFotoAlfredo: b.putInt("user",2);break;
         }
-
+        if(bundle != null){
+            b.putInt("show", bundle.getInt("show"));
+            b.putInt("show2", bundle.getInt("show2"));
+        }
         intent.putExtras(b);
 
         //Iniciamos la nueva actividad
