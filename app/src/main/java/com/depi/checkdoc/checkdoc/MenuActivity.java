@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,6 +47,17 @@ public class MenuActivity extends AppCompatActivity
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        getResources().getString(R.string.cancelCall),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),
+                                        "Se ha cancelado su llamada a emergencias", Toast.LENGTH_LONG)
+                                        .show();
                             }
                         });
 

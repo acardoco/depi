@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -69,6 +70,17 @@ public class Indicators extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        getResources().getString(R.string.cancelCall),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),
+                                        "Se ha cancelado su llamada a emergencias", Toast.LENGTH_LONG)
+                                        .show();
                             }
                         });
 

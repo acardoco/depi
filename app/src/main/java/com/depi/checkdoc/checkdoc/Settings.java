@@ -55,6 +55,17 @@ public class Settings extends AppCompatActivity {
                             }
                         });
 
+                builder1.setNegativeButton(
+                        getResources().getString(R.string.cancelCall),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),
+                                        "Se ha cancelado su llamada a emergencias", Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        });
+
                 AlertDialog alert11 = builder1.create();
                 alert11.show();
             }

@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -47,6 +48,17 @@ public class GraphicsIndicator extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        getResources().getString(R.string.cancelCall),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                Toast.makeText(getApplicationContext(),
+                                        "Se ha cancelado su llamada a emergencias", Toast.LENGTH_LONG)
+                                        .show();
                             }
                         });
 

@@ -239,4 +239,5 @@ El ejercicio de los derechos de oposición, acceso, rectificación y cancelació
     <string name="title_activity_select_options"> Seleccione una opción </string>
     <string name="title_activity_select_op">SelectOp</string>
     <string name="title_activity_change_pass">Cambio de contraseña</string>
+    <string name="cancelCall">Cancelar llamada</string>
 </resources>
