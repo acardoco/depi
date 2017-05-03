@@ -84,7 +84,7 @@ public class Settings extends AppCompatActivity {
 
         // Defined Array values to show in ListView
         String[] values = new String[] {
-                "Notificaciones",
+                "Habilitar o deshabilitar notificaciones",
                 "Cambiar Contraseña",
                 "Corrección de color",
                 "Idioma",
