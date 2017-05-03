@@ -1,9 +1,15 @@
 package com.depi.checkdoc.checkdoc;
 
+import android.annotation.TargetApi;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.service.notification.StatusBarNotification;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +21,7 @@ import android.widget.Toast;
 
 public class contactDoctor extends AppCompatActivity {
     Bundle bundle;
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +96,12 @@ public class contactDoctor extends AppCompatActivity {
         //Esto pone el título en la barra de arriba cada vez
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_contact_doctor));
+
+        /*NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        for(StatusBarNotification not: mNotificationManager.getActiveNotifications()){
+                if(not.getId() == 112) chat.setEnabled(true);
+                else chat.setEnabled(false);
+        }*/
 
     }
     //con esto se vuelve a atrás

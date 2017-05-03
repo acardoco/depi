@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/contactText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
@@ -27,14 +28,11 @@
         <ImageView
             android:id="@+id/ImgMapDoctor"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/text_margin"
-            android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginTop="-70dp"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/text_margin"
             android:layout_weight="1"
             android:contentDescription="@string/imgMapDocDescrp"
-            android:src="@drawable/imgmapdoc"
-            />
+            android:src="@drawable/imgmapdoc" />
 
         <TextView
             android:layout_width="match_parent"
@@ -44,24 +42,4 @@
 
 
     </android.support.v7.widget.LinearLayoutCompat>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/chat"
-        android:layout_width="61dp"
-        android:layout_height="59dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorBackground"
-        app:fabSize="mini"
-        app:rippleColor="@color/colorBackground"
-        app:srcCompat="@drawable/chat_icon"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        tools:layout_editor_absoluteY="400dp" />
-
-
 </android.support.constraint.ConstraintLayout>

@@ -1,11 +1,21 @@
 package com.depi.checkdoc.checkdoc;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,9 +27,20 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Bundle bundle;
+
+    private Intent notIntent;
+    private NotificationCompat.Builder mBuilder;
+    private TaskStackBuilder stackBuilder;
+    private NotificationManager mNotificationManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +99,41 @@ public class MenuActivity extends AppCompatActivity
         //Esto pone el título en la barra de arriba cada vez
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_menu));
+
+
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(MenuActivity.this)
+                .setSmallIcon(R.drawable.chatsmall)
+                .setContentTitle("Su médico")
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.doctorchat))
+                .setSound(alarmSound)
+                .setVibrate(new long[] {0, 1000, 200,1000 })
+                .setLights(Color.GREEN, 500, 500)
+                .setContentText("Hola, Víctor. He visto que María no ha tomado su meducación de hoy. ¿Pasa algo?");
+
+        notIntent = new Intent(MenuActivity.this, Chat.class);
+        /*Bundle b = new Bundle();
+        b.putInt("show",bundle.getInt("show"));
+        b.putInt("show2", bundle.getInt("show2"));
+        notIntent.putExtras(b);*/
+
+        stackBuilder = TaskStackBuilder.create(MenuActivity.this);
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        scheduler.scheduleAtFixedRate
+                (new Runnable() {
+                    public void run() {
+                        stackBuilder.addParentStack(Chat.class);
+                        stackBuilder.addNextIntent(notIntent);
+
+                        PendingIntent resultPendingIntent =
+                                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                        mBuilder.setContentIntent(resultPendingIntent);
+
+                        mNotificationManager.notify(112, mBuilder.build());
+                    }
+                }, 0, 10, TimeUnit.MINUTES);
     }
 
     @Override

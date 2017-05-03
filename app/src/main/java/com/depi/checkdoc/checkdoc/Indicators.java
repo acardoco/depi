@@ -186,7 +186,7 @@ public class Indicators extends AppCompatActivity {
                                 );
                         mBuilder.setContentIntent(resultPendingIntent);
 
-                        mNotificationManager.notify(1234, mBuilder.build());
+                        mNotificationManager.notify(111, mBuilder.build());
 
                     }
                 }, 0, 10, TimeUnit.MINUTES);

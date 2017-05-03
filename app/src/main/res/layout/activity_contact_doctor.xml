@@ -26,4 +26,12 @@
 
     <include layout="@layout/content_contact_doctor" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/chat_icon" />
+
 </android.support.design.widget.CoordinatorLayout>
