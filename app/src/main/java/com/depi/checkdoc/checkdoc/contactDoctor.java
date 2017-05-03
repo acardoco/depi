@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 public class contactDoctor extends AppCompatActivity {
     Bundle bundle;
+    FloatingActionButton chat;
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,8 @@ public class contactDoctor extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton chat = (FloatingActionButton) findViewById(R.id.chat);
+        chat = (FloatingActionButton) findViewById(R.id.chat);
+        chat.setEnabled(false);
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,12 +100,6 @@ public class contactDoctor extends AppCompatActivity {
         TextView txtTitle = (TextView) findViewById(R.id.txtAbTitulo);
         txtTitle.setText(getResources().getString(R.string.title_activity_contact_doctor));
 
-        /*NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        for(StatusBarNotification not: mNotificationManager.getActiveNotifications()){
-                if(not.getId() == 112) chat.setEnabled(true);
-                else chat.setEnabled(false);
-        }*/
-
     }
     //con esto se vuelve a atrás
     @Override
@@ -126,4 +123,19 @@ public class contactDoctor extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        for(StatusBarNotification not: mNotificationManager.getActiveNotifications()){
+            if(not.getId() == 112) chat.setEnabled(true);
+            else chat.setEnabled(false);
+        }
+
+        if(!chat.isEnabled()) chat.getBackground().setAlpha(64);
+        else chat.getBackground().setAlpha(255);
+
+    }
+
 }

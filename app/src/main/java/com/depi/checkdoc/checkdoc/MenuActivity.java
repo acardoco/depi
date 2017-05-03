@@ -110,7 +110,8 @@ public class MenuActivity extends AppCompatActivity
                 .setSound(alarmSound)
                 .setVibrate(new long[] {0, 1000, 200,1000 })
                 .setLights(Color.GREEN, 500, 500)
-                .setContentText("Hola, Víctor. He visto que María no ha tomado su meducación de hoy. ¿Pasa algo?");
+                .setContentText("Hola, Víctor. He visto que María no ha tomado su meducación de hoy. ¿Pasa algo?")
+                .setAutoCancel(true);
 
         notIntent = new Intent(MenuActivity.this, Chat.class);
         /*Bundle b = new Bundle();
